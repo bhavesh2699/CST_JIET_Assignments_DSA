@@ -2,7 +2,7 @@
 Given an integer A, find and return the number of paths in a grid of size (A x A) that
 starts from (1, 1) and reaches (A, A) without crossing the major diagonal.
 
-sample input: 5
+sample input: 3
 sample input: 2
 */
 
@@ -10,9 +10,9 @@ sample input: 2
 #include <cstring> 
 
 using namespace std; 
+
 #define ALLOC(size,dp) memset(dp,0,size*sizeof(*dp));
   
-
 int main() 
 {
 	int size;
