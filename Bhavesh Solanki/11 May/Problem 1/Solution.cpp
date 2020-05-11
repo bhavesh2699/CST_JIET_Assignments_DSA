@@ -1,6 +1,6 @@
 /*
 Given an array of integers, every element appears twice except for one. Find that single
-one 
+one.
 sample input: { 1, 1, 2, 3, 2, 4, 5, 4, 5 }
 sample input: 3
 */
