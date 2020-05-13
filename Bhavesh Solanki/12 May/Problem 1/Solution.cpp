@@ -3,8 +3,7 @@ Given a M x N matrix mat[][], the task is to count the number of cells which
 have the sum of its adjacent cells equal to a prime number. For a cell x[i][j],
 only x[i+1][j], x[i-1][j], x[i][j+1] and x[i][j-1] are the adjacent cells.
 
-Input : mat[][] = {{1, 3}, 
-				   {2, 5}}
+Input : mat[][] = {{1, 3},{2, 5}}
 Output :2
 */
 
