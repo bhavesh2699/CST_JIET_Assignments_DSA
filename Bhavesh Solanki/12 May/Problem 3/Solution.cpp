@@ -1,33 +1,43 @@
 /*
-Given an integer A representing the square blocks. The height of each square block is 1. 
-The task is to create a staircase of max height using these blocks. 
-The first stair would require only one block, the second stair would require two blocks
-and so on. Find and return the maximum height of the staircase
+Given an N * M 2D binary matrix, the task is to find the count of columns having odd number of 1s.
 
-sample input: 5
-sample input: 2
+sample input: {
+{1, 1, 0, 0, 1, 1},
+{0, 1, 0, 1, 0, 0},
+{1, 1, 1, 0, 1, 0}}
+
+sample outpu: 4
 */
 
 #include<iostream>
 using namespace std;
-
-#define loop(i,size) for(int i=1;;i++)
-#define output(blocks) cout <<"Output: "<< blocks << endl;
-  
-int main() 
+#define loopOuter(i,row) for(int i=0;i<row;i++)
+#define loopInner(j,col) for(int j=0;j<col;j++)
+int main ()
 { 
-    int size, blocks = 0;
-    cout << "Enter number of square blocks:" << endl;
-    cin >> size;
-    
-    loop(i,size){
-    	size -= i;
-    	if(size < 0){
-    		output(blocks)
-    		break;
-		}
-		else blocks += 1;
-    	
-	}     
-} 
+  int count=0,row,col;
+  cout << "Enter number of rows and cloumns" << endl;
+  cin >> row >> col;
+  
+  //Allocating 2D Matrix
+  int **arr = new int*[row];
+  loopOuter(i,row) arr[i] = new int[col];
+   
+  //Input matrix elements
+  cout << "Enter elements "<< row*col <<" of array:" << endl;
+  loopOuter(i,row) loopInner(j,col) cin >> arr[i][j];
+  
+  
+  //Logic
+  for(int i=0;i<col;i++){
 
+  	int sum = 0;
+  	
+  	for(int j=0;j<row;j++) sum+= arr[j][i]; 
+  	
+    if (sum % 2 == 1) count++;   	
+  }
+  
+  //output
+  cout <<"Output: "<< count <<endl; 
+}
