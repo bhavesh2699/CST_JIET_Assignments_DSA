@@ -1,41 +1,48 @@
 /*
-Given an integer array A of N integers, find the pair of integers in the array which have 
-minimum XOR value. Report the minimum XOR value. 
+Search in a row wise and column wise sorted matrix. Given an n x n matrix
+and a number x, find the position of x in the matrix if it is present in it.
+Otherwise, print “Not Found”. In the given matrix, every row and column is
+sorted in increasing order. The designed algorithm should have linear time
+complexity.
 
-sample input: { 9, 5, 3 }
-sample input: 6
+Input : mat[][] = { {10, 20, 30, 40},{ 15, 25, 35, 45},{27, 29, 37, 48},{32, 33, 39, 50}};
+Element: 29
+Output: found at 2,1
 */
 
 #include<iostream>
-#include<algorithm>
 using namespace std;
-
-#define MAX 100000
-#define loop(i,n) for(int i=0;i<n;i++)
-  
-int main() 
+#define loopOuter(i,row) for(int i=0;i<row;i++)
+#define loopInner(j,col) for(int j=0;j<col;j++)
+int main ()
 { 
-    int size;
-    cout << "Enter size of array:" << endl;
-    cin >> size;
-    int *arr = new int[size];
-    cout << "Enter elements of array:" << endl;
-    loop(i,size) cin >> arr[i];
-    
-    sort(arr, arr + size); 
+  int row, col, ele;
+  cout << "Enter number of rows and columns" << endl;
+  cin >> row >> col;
   
-    int minXor = MAX; 
-    int val = 0; 
+  //Allocating 2D Matrix
+  int **arr = new int*[row];
+  loopOuter(i,row) arr[i] = new int[col];
+   
+  //Input matrix elements
+  cout << "Enter elements "<< row*col <<" of array:" << endl;
+  loopOuter(i,row) loopInner(j,col) cin >> arr[i][j];
   
-    for (int i = 0; i < size - 1; i++) { 
-        minXor = min(minXor, arr[i] ^ arr[i + 1]); 
-    } 
-    
-    cout <<"Output: "<<minXor << endl; 
-    
-    
-    delete arr;
-    
-
-} 
-
+  cout << "Enter elemnt to be searched" << endl;
+  cin >> ele;
+  
+  int i = 0, j = col-1;
+  bool check = true;
+  
+  while(i<row && j>=0){
+  	if(arr[i][j] == ele){
+  		cout << "Element found at: " << i <<" , "<< j << endl;
+  		check = false;
+  		break;
+	  }
+	else if(arr[i][j] < ele) i++;
+	else j--;
+  }
+  if(check) cout << "Element not found " <<endl;
+  
+}
